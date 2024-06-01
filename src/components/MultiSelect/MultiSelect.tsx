@@ -4,6 +4,7 @@ import { AxiosError } from 'axios';
 import Badge from '../Badge';
 import OptionsList from './OptionsList';
 import { cn } from '@/lib/utils/cn';
+import Input from './TextInput';
 
 export type MultiSelectItemType = {
   id: number;
@@ -148,7 +149,7 @@ const MultiSelect = ({
                 onClick={() => handleBadgeClick(selectedItem.id)}
               />
             ))}
-            <input
+            <Input
               ref={inputRef}
               type="text"
               value={searchText}
