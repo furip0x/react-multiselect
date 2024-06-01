@@ -72,6 +72,7 @@ const MultiSelect = ({
   const handleBadgeClick = (id: number) => {
     toggleOption(id);
     setFocusedOptionIndex(-1);
+    inputRef.current?.focus();
   };
 
   useEffect(() => {
