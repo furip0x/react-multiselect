@@ -21,6 +21,7 @@ function App() {
   } = useQuery({
     queryKey: ['characters', searchText, page],
     queryFn: () => getCharacters(searchText, page),
+    staleTime: 5 * 60 * 1000, // 5 minutes
     enabled: false,
     retry: false,
     refetchOnWindowFocus: false,
