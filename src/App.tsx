@@ -21,7 +21,7 @@ function App() {
   } = useQuery({
     queryKey: ['characters', searchText, page],
     queryFn: () => getCharacters(searchText, page),
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    // staleTime: 5 * 60 * 1000, // 5 minutes
     enabled: false,
     retry: false,
     refetchOnWindowFocus: false,
@@ -65,13 +65,15 @@ function App() {
   }, [charactersData, page]);
 
   useEffect(() => {
-    if (prevSearchText.current !== searchText) {
-      setPage(1);
-      setOptions([]);
-    }
-    prevSearchText.current = searchText;
+    if (searchText.trim() !== '') {
+      if (prevSearchText.current !== searchText) {
+        setPage(1);
+        setOptions([]);
+      }
+      prevSearchText.current = searchText;
 
-    refetchCharacters();
+      refetchCharacters();
+    }
   }, [searchText, page]);
 
   const handleLoadMore = () => {
