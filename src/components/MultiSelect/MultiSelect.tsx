@@ -3,9 +3,9 @@ import { FaCaretDown, FaCircleNotch } from 'react-icons/fa6';
 import { AxiosError } from 'axios';
 import Badge from '../Badge';
 import OptionsList from './OptionsList';
-import { cn } from '@/lib/utils/cn';
+import { cn } from '@/utils/cn';
 import Input from './TextInput';
-import { debounce } from '@/lib/utils/debounce';
+import { debounce } from '@/utils/debounce';
 
 export type MultiSelectItemType = {
   id: number;

@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils/cn';
-import { highlightText } from '@/lib/utils/highlight-text';
+import { cn } from '@/utils/cn';
+import { highlightText } from '@/utils/highlight-text';
 import { MultiSelectItemType } from './MultiSelect';
 
 interface IOptionItemProps {

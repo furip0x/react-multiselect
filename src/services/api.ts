@@ -9,14 +9,6 @@ const instance = axios.create({
 });
 instance.interceptors.request.use(
   (config) => {
-    // const lang = localStorage.getItem('lng');
-    // const token = Cookies.get('token');
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    // }
-    // if (lang) {
-    //   config.headers['Accept-Language'] = lang;
-    // }
     return config;
   },
   (error) => {

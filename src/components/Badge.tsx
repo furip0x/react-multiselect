@@ -1,5 +1,5 @@
 import { FaXmark } from 'react-icons/fa6';
-import { cn } from '../lib/utils/cn';
+import { cn } from '../utils/cn';
 
 interface IBadgeProps {
   title: string;

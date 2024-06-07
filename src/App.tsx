@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { getCharacters } from './lib/services/rickandmorty/get-characters';
+import { getCharacters } from '@/services/rickandmorty/get-characters';
 import { useQuery } from '@tanstack/react-query';
-import MultiSelect, { MultiSelectItemType } from './components/MultiSelect/MultiSelect';
-import useDebounce from './hooks/useDebounce';
+import MultiSelect, { MultiSelectItemType } from '@/components/MultiSelect/MultiSelect';
+import useDebounce from '@/hooks/useDebounce';
 
 function App() {
   const [page, setPage] = useState<number>(1);
