@@ -5,6 +5,7 @@ import Badge from '../Badge';
 import OptionsList from './OptionsList';
 import { cn } from '@/lib/utils/cn';
 import Input from './TextInput';
+import { debounce } from '@/lib/utils/debounce';
 
 export type MultiSelectItemType = {
   id: number;
@@ -96,18 +97,18 @@ const MultiSelect = ({
   useEffect(() => {
     if (optionsWrapperRef.current && !isOptionsError) {
       const optionsWrapper = optionsWrapperRef.current;
-      const handleScroll = () => {
+      const handleScroll = debounce(() => {
         const { scrollTop, scrollHeight, clientHeight } = optionsWrapper;
         if (scrollTop + clientHeight >= scrollHeight - 10) {
           onLoadMore();
         }
-      };
+      }, 300);
       optionsWrapper.addEventListener('scroll', handleScroll);
       return () => {
         optionsWrapper.removeEventListener('scroll', handleScroll);
       };
     }
-  }, [options, isOptionsError]);
+  }, [options, isOptionsError, onLoadMore]);
 
   useEffect(() => {
     if (isOpen) {
