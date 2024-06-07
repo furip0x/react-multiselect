@@ -167,7 +167,7 @@ const MultiSelect = ({
       <div
         ref={dropdownRef}
         className={cn(
-          'absolute left-0 right-0 top-[calc(100%_+_15px)] z-10 hidden overflow-hidden rounded-2xl border border-slate-400 shadow-md',
+          'absolute left-0 right-0 top-[calc(100%_+_15px)] z-10 hidden min-h-3 overflow-hidden rounded-2xl border border-slate-400 shadow-md',
           {
             block: isOpen,
           }
