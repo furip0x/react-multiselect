@@ -78,11 +78,11 @@ function App() {
     }
   }, [debouncedSearchText, page]);
 
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
     if (hasMore && !isCharactersLoading) {
       setPage((prev) => prev + 1);
     }
-  };
+  }, [hasMore, isCharactersLoading]);
 
   return (
     <div className="grid min-h-dvh w-full justify-center bg-white p-10">
