@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { getCharacters } from './lib/services/rickandmorty/get-characters';
 import { useQuery } from '@tanstack/react-query';
 import MultiSelect, { MultiSelectItemType } from './components/MultiSelect/MultiSelect';
+import useDebounce from './hooks/useDebounce';
 
 function App() {
   const [page, setPage] = useState<number>(1);
@@ -10,6 +11,7 @@ function App() {
   const [searchText, setSearchText] = useState<string>('');
   const [hasMore, setHasMore] = useState<boolean>(true);
   const prevSearchText = useRef(searchText);
+  const debouncedSearchText = useDebounce<string>(searchText, 500);
 
   const {
     // isPending: isCharactersPending,
@@ -19,8 +21,8 @@ function App() {
     isLoading: isCharactersLoading,
     refetch: refetchCharacters,
   } = useQuery({
-    queryKey: ['characters', searchText, page],
-    queryFn: () => getCharacters(searchText, page),
+    queryKey: ['characters', debouncedSearchText, page],
+    queryFn: () => getCharacters(debouncedSearchText, page),
     // staleTime: 5 * 60 * 1000, // 5 minutes
     enabled: false,
     retry: false,
@@ -65,16 +67,16 @@ function App() {
   }, [charactersData, page]);
 
   useEffect(() => {
-    if (searchText.trim() !== '') {
-      if (prevSearchText.current !== searchText) {
+    if (debouncedSearchText.trim() !== '') {
+      if (prevSearchText.current !== debouncedSearchText) {
         setPage(1);
         setOptions([]);
       }
-      prevSearchText.current = searchText;
+      prevSearchText.current = debouncedSearchText;
 
       refetchCharacters();
     }
-  }, [searchText, page]);
+  }, [debouncedSearchText, page]);
 
   const handleLoadMore = () => {
     if (hasMore && !isCharactersLoading) {
