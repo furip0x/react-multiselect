@@ -3,17 +3,18 @@ import { highlightText } from '@/utils/highlight-text';
 import { MultiSelectItemType } from './MultiSelect';
 
 interface IOptionItemProps {
+  index: number;
   option: MultiSelectItemType;
   isSelected: boolean;
   isFocused: boolean;
   searchText: string;
-  toggleOption: (id: number) => void;
+  handleOptionClick: (index: number, id: number) => void;
 }
 
-const OptionItem = ({ option, searchText, isFocused, isSelected, toggleOption }: IOptionItemProps) => {
+const OptionItem = ({ index, option, searchText, isFocused, isSelected, handleOptionClick }: IOptionItemProps) => {
   return (
     <div
-      onClick={() => toggleOption(option.id)}
+      onClick={() => handleOptionClick(index, option.id)}
       className={cn('flex items-center justify-between border-b border-gray-400 bg-gray-50 px-2 py-1 last:border-0', {
         'bg-gray-200': isSelected,
         'bg-slate-200': isFocused && !isSelected,

@@ -76,6 +76,12 @@ const MultiSelect = ({
     inputRef.current?.focus();
   };
 
+  const handleOptionClick = (index: number, id: number) => {
+    toggleOption(id);
+    setFocusedOptionIndex(index);
+    inputRef.current?.focus();
+  };
+
   useEffect(() => {
     function handleDocumentClick(event: MouseEvent) {
       if (
@@ -180,7 +186,7 @@ const MultiSelect = ({
               selected={selected}
               searchText={searchText}
               focusedOptionIndex={focusedOptionIndex}
-              toggleOption={toggleOption}
+              handleOptionClick={handleOptionClick}
             />
           )}
           {isOptionsLoading && (

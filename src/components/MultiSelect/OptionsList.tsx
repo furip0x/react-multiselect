@@ -7,11 +7,11 @@ interface IOptionsListProps {
   selected: MultiSelectItemType[];
   searchText: string;
   focusedOptionIndex: number;
-  toggleOption: (id: number) => void;
+  handleOptionClick: (index: number, id: number) => void;
 }
 
 const OptionsList = React.memo(
-  ({ options, focusedOptionIndex, searchText, toggleOption, selected }: IOptionsListProps) => {
+  ({ options, focusedOptionIndex, searchText, handleOptionClick, selected }: IOptionsListProps) => {
     return (
       <>
         {options.map((option, index) => {
@@ -21,10 +21,11 @@ const OptionsList = React.memo(
           return (
             <OptionItem
               key={option.id}
+              index={index}
               option={option}
               isSelected={isSelected}
               isFocused={isFocused}
-              toggleOption={toggleOption}
+              handleOptionClick={handleOptionClick}
               searchText={searchText}
             />
           );
