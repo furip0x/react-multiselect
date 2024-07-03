@@ -1,11 +1,11 @@
+import { cn } from '@/utils/cn';
+import { debounce } from '@/utils/debounce';
+import { AxiosError } from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { FaCaretDown, FaCircleNotch } from 'react-icons/fa6';
-import { AxiosError } from 'axios';
 import Badge from '../Badge';
 import OptionsList from './OptionsList';
-import { cn } from '@/utils/cn';
 import Input from './TextInput';
-import { debounce } from '@/utils/debounce';
 
 export type MultiSelectItemType = {
   id: number;
@@ -24,6 +24,7 @@ interface IMultiSelectProps {
   selected: MultiSelectItemType[] | [];
   toggleOption: (id: number) => void;
   onLoadMore: () => void;
+  placeholder?: string;
 }
 
 const MultiSelect = ({
@@ -36,6 +37,7 @@ const MultiSelect = ({
   selected,
   toggleOption,
   onLoadMore,
+  placeholder,
 }: IMultiSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectBoxRef = useRef<HTMLDivElement>(null);
@@ -161,6 +163,7 @@ const MultiSelect = ({
               ref={inputRef}
               type="text"
               value={searchText}
+              placeholder={placeholder}
               onChange={(e) => setSearchText(e.target.value.toLowerCase())}
               className="w-5 flex-1 border-0 bg-transparent px-0 text-slate-950 focus:outline-0"
             />

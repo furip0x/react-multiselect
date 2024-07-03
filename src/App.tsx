@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { getCharacters } from '@/services/rickandmorty/get-characters';
-import { useQuery } from '@tanstack/react-query';
 import MultiSelect, { MultiSelectItemType } from '@/components/MultiSelect/MultiSelect';
 import useDebounce from '@/hooks/useDebounce';
+import { getCharacters } from '@/services/rickandmorty/get-characters';
+import { useQuery } from '@tanstack/react-query';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 function App() {
   const [page, setPage] = useState<number>(1);
@@ -97,6 +97,7 @@ function App() {
           searchText={searchText}
           setSearchText={setSearchText}
           onLoadMore={handleLoadMore}
+          placeholder="Search characters...(e.g. rick, morty)"
         />
       </div>
     </div>
